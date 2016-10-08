@@ -1,5 +1,7 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import App from './App'
 import Home from './vue/pages/Home'
 import Hello from './vue/pages/Hello'
@@ -8,18 +10,20 @@ import Hello from './vue/pages/Hello'
 import './sass/styles.scss'
 
 // install router
-Vue.use(Router)
+Vue.use(VueRouter)
+
+const routes = [
+	{ path: '/', component: Home },
+	{ path: '/hello', component: Hello }
+]
 
 // routing
-var router = new Router()
-
-router.map({
-	'/': {
-		component: Home
-	},
-	'/hello': {
-		component: Hello
-	}
+const router = new VueRouter({
+	routes: routes
 })
 
-router.start(App, '#app')
+const app = new Vue({
+	router,
+	...App
+})
+app.$mount('#app')
