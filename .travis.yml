@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "node"
+branches:
+  only:
+    - master
+
+
+
+berfore_script:
+  - npm i
+
+script:
+  - npm run build
+
+deploy:
+  skip_cleanup: true
+  provider: npm
+  on:
+    tags: true
